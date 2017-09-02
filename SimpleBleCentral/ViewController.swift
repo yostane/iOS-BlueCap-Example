@@ -197,7 +197,7 @@ class ViewController: UIViewController, UITextViewDelegate {
             //the value is in the dataValue property
             let s = String(data:(self.dataCharacteristic?.dataValue)!, encoding: .utf8)
             DispatchQueue.main.async {
-                self.valueLabel.text = "Read value is \(s)"
+                self.valueLabel.text = "Read value is \(String(describing: s))"
                 print(self.valueLabel.text!)
             }
         }

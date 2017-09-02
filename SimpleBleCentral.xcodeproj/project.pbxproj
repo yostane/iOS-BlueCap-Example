@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7B46C7401F5B578B00A8EEE3 /* BlueCapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B46C73F1F5B578B00A8EEE3 /* BlueCapKit.framework */; };
+		7B46C7421F5B5F3D00A8EEE3 /* BlueCapKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7B46C73F1F5B578B00A8EEE3 /* BlueCapKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7B8AEEE31E34F2DC00B09856 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8AEEE21E34F2DC00B09856 /* AppDelegate.swift */; };
 		7B8AEEE51E34F2DC00B09856 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8AEEE41E34F2DC00B09856 /* ViewController.swift */; };
 		7B8AEEE81E34F2DC00B09856 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B8AEEE61E34F2DC00B09856 /* Main.storyboard */; };
@@ -23,6 +24,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				7B46C7421F5B5F3D00A8EEE3 /* BlueCapKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -300,7 +302,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SimpleBleCentral",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = SimpleBleCentral/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -319,7 +320,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SimpleBleCentral",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = SimpleBleCentral/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
