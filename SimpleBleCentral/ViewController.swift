@@ -86,9 +86,13 @@ class ViewController: UIViewController, UITextViewDelegate {
         }
         
         //We will connect to the first scanned peripheral
-        let connectionFuture = scanFuture.flatMap { peripheral -> FutureStream<Peripheral> in
+        let connectionFuture = scanFuture.flatMap { p -> FutureStream<Void> in
             //stop the scan as soon as we find the first peripheral
             manager.stopScanning()
+            peripheral = p
+            guard let peripheral = peripheral else {
+                throw AppError.unknown
+            }
             DispatchQueue.main.async {
                 self.connectionStatusLabel.text = "Found peripheral \(peripheral.identifier.uuidString). Trying to connect"
                 print(self.connectionStatusLabel.text!)
@@ -98,10 +102,16 @@ class ViewController: UIViewController, UITextViewDelegate {
         }
         
         //we will next discover the "ec00" service in order be able to access its characteristics
-        let discoveryFuture = connectionFuture.flatMap { peripheral -> Future<Peripheral> in
+        let discoveryFuture = connectionFuture.flatMap { _ -> Future<Void> in
+            guard let peripheral = peripheral else {
+                throw AppError.unknown
+            }
             return peripheral.discoverServices([serviceUUID])
-            }.flatMap { discoveredPeripheral -> Future<Service> in
-                guard let service = discoveredPeripheral.service(serviceUUID) else {
+            }.flatMap { _ -> Future<Void> in
+                guard let discoveredPeripheral = peripheral else {
+                    throw AppError.unknown
+                }
+                guard let service = discoveredPeripheral.services(withUUID:serviceUUID)?.first else {
                     throw AppError.serviceNotFound
                 }
                 peripheral = discoveredPeripheral
@@ -117,8 +127,11 @@ class ViewController: UIViewController, UITextViewDelegate {
          1- checks if the characteristic is correctly discovered
          2- Register for notifications using the dataFuture variable
         */
-        let dataFuture = discoveryFuture.flatMap { service -> Future<Characteristic> in
-            guard let dataCharacteristic = service.characteristic(dateCharacteristicUUID) else {
+        let dataFuture = discoveryFuture.flatMap { _ -> Future<Void> in
+            guard let discoveredPeripheral = peripheral else {
+                throw AppError.unknown
+            }
+            guard let dataCharacteristic = discoveredPeripheral.services(withUUID:serviceUUID)?.first?.characteristics(withUUID:dateCharacteristicUUID)?.first else {
                 throw AppError.dataCharactertisticNotFound
             }
             self.dataCharacteristic = dataCharacteristic
@@ -135,16 +148,22 @@ class ViewController: UIViewController, UITextViewDelegate {
             self.read()
             //Ask the characteristic to start notifying for value change
             return dataCharacteristic.startNotifying()
-            }.flatMap { characteristic -> FutureStream<(characteristic: Characteristic, data: Data?)> in
+            }.flatMap { _ -> FutureStream<Data?> in
+                guard let discoveredPeripheral = peripheral else {
+                    throw AppError.unknown
+                }
+                guard let characteristic = discoveredPeripheral.services(withUUID:serviceUUID)?.first?.characteristics(withUUID:dateCharacteristicUUID)?.first else {
+                    throw AppError.dataCharactertisticNotFound
+                }
                 //regeister to recieve a notifcation when the value of the characteristic changes and return a future that handles these notifications
                 return characteristic.receiveNotificationUpdates(capacity: 10)
         }
         
         //The onSuccess method is called every time the characteristic value changes
-        dataFuture.onSuccess { (_, data) in
+        dataFuture.onSuccess { data in
             let s = String(data:data!, encoding: .utf8)
             DispatchQueue.main.async {
-                self.notifiedValueLabel.text = "notified value is \(s)"
+                self.notifiedValueLabel.text = "notified value is \(String(describing: s))"
             }
         }
         

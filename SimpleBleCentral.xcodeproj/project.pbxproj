@@ -7,14 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7B46C7401F5B578B00A8EEE3 /* BlueCapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B46C73F1F5B578B00A8EEE3 /* BlueCapKit.framework */; };
 		7B8AEEE31E34F2DC00B09856 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8AEEE21E34F2DC00B09856 /* AppDelegate.swift */; };
 		7B8AEEE51E34F2DC00B09856 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8AEEE41E34F2DC00B09856 /* ViewController.swift */; };
 		7B8AEEE81E34F2DC00B09856 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B8AEEE61E34F2DC00B09856 /* Main.storyboard */; };
 		7B8AEEEA1E34F2DC00B09856 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B8AEEE91E34F2DC00B09856 /* Assets.xcassets */; };
 		7B8AEEED1E34F2DC00B09856 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B8AEEEB1E34F2DC00B09856 /* LaunchScreen.storyboard */; };
-		7B8AEEF51E34F3C800B09856 /* BlueCapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B8AEEF41E34F3C800B09856 /* BlueCapKit.framework */; };
 		7B8AEEF81E34F3D700B09856 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B8AEEF71E34F3D700B09856 /* CoreBluetooth.framework */; };
-		7B8AEEFA1E34F3DB00B09856 /* BlueCapKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7B8AEEF41E34F3C800B09856 /* BlueCapKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -24,7 +23,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				7B8AEEFA1E34F3DB00B09856 /* BlueCapKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -32,6 +30,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		7B46C73F1F5B578B00A8EEE3 /* BlueCapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BlueCapKit.framework; sourceTree = "<group>"; };
 		7B8AEEDF1E34F2DC00B09856 /* SimpleBleCentral.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleBleCentral.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B8AEEE21E34F2DC00B09856 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7B8AEEE41E34F2DC00B09856 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -39,7 +38,6 @@
 		7B8AEEE91E34F2DC00B09856 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7B8AEEEC1E34F2DC00B09856 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7B8AEEEE1E34F2DC00B09856 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7B8AEEF41E34F3C800B09856 /* BlueCapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BlueCapKit.framework; sourceTree = "<group>"; };
 		7B8AEEF71E34F3D700B09856 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -48,8 +46,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B46C7401F5B578B00A8EEE3 /* BlueCapKit.framework in Frameworks */,
 				7B8AEEF81E34F3D700B09856 /* CoreBluetooth.framework in Frameworks */,
-				7B8AEEF51E34F3C800B09856 /* BlueCapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,7 +74,7 @@
 		7B8AEEE11E34F2DC00B09856 /* SimpleBleCentral */ = {
 			isa = PBXGroup;
 			children = (
-				7B8AEEF41E34F3C800B09856 /* BlueCapKit.framework */,
+				7B46C73F1F5B578B00A8EEE3 /* BlueCapKit.framework */,
 				7B8AEEE21E34F2DC00B09856 /* AppDelegate.swift */,
 				7B8AEEE41E34F2DC00B09856 /* ViewController.swift */,
 				7B8AEEE61E34F2DC00B09856 /* Main.storyboard */,
@@ -302,6 +300,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SimpleBleCentral",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = SimpleBleCentral/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -320,6 +319,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SimpleBleCentral",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = SimpleBleCentral/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -349,6 +349,7 @@
 				7B8AEEF31E34F2DC00B09856 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
